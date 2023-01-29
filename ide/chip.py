@@ -1,7 +1,8 @@
 # for chip
-from textual.widgets import Label
+from textual.widgets import Label, Static
 from rich.text import Text, TextType
 from textual.app import ComposeResult
+from textual.color import Color
 
 
 class Chip(Label, can_focus=True):
@@ -11,7 +12,6 @@ class Chip(Label, can_focus=True):
     border: none;
     min-width: 0;
     height: 1;
-    background: transparent;
   }
   """
   
@@ -45,27 +45,15 @@ class Chip(Label, can_focus=True):
       
     self.icon = icon
     
-    self.pre = pre or ""
-    self.post = post or ""
+    self.post = post or "░▒▓"
+    self.pre = pre or "▓▒░"
 
-    self.fg = foreground or "black"
-    self.bg = background or "white"
 
-    self.end = ""
-    if variant == "color-icon-box":
-        self.end = f"[{self.bg} on {variantColor}]{self.icon}[/][{variantColor}]{self.post}"
-        self.label = f"{self.label} "
-    elif variant == "color-icon":
-        self.end = f"[{variantColor} on {self.bg}]{self.icon}[/]{self.post}"
-    else:
-        self.end = f"{self.icon}{self.post}"
+    self.end = f"{self.icon}{self.post}"
+    
+    self.styles.background = Color.parse("pink")
+    
 
-    if shapedBox:
-        if variant == "color-icon-box":
-            self.end = f"[{self.bg} on {variantColor}]{self.post}[{variantColor} on {self.fg}]{self.end}[/]"
-        elif variant == "color-icon":
-            self.end = f"[{self.bg} on {variantColor}]{self.post}[/][{variantColor} on {self.bg}]{self.post}[{self.bg} on {self.fg}]{self.end}"
-  
   def compose(self) -> ComposeResult:
-    yield Label(f"[{self.bg} on {self.fg}]{self.pre}[/][{self.fg} on {self.bg}]{self.label}[/][{self.bg} on {self.fg}]{self.end}[/]")
+    yield Label(f"[#1e2030]{self.pre}[/]{self.label}[#1e2030]{self.end}[/]")
     

@@ -38,10 +38,21 @@ class Ide(App):
     yield tree
     
     yield Horizontal(
-      Chip("test", icon="", variant="color-icon-box", variantColor="purple"),
-      Chip("test", icon="", variant="color-icon-box", shapedBox=True, variantColor="purple"),
-      Chip("test", icon="", variant="color-icon", variantColor="purple"),
-      Chip("test", icon="", variant="color-icon", shapedBox=True ,variantColor="purple"),
+      Chip("test"),
+      Chip("test"),
+      Chip("test"),
+      Chip("test"),
+      Chip("test"),
+      Chip("test"),
+      Chip("test"),
+      Chip("test"),
+      Chip("test"),
+      Chip("test"),
+      Chip("test"),
+      # Chip("test", icon="", variant="color-icon-box", variantColor="purple"),
+      # Chip("test", icon="", variant="color-icon-box", shapedBox=True, variantColor="purple"),
+      # Chip("test", icon="", variant="color-icon", variantColor="purple"),
+      # Chip("test", icon="", variant="color-icon", shapedBox=True ,variantColor="purple"),
     id="contentpane", classes="box")
     
     yield Static("statusbar", id="statusbar", classes="box")

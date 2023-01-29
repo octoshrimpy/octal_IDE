@@ -91,3 +91,10 @@ Screen {
 .hidden {
   display: none;
 }
+
+#contentpane {
+  layout: grid;
+  grid-size: 3;
+  grid-columns: 1fr 1fr;
+  grid-rows: 1fr 1fr;
+}
