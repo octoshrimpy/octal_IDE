@@ -79,7 +79,6 @@ Screen {
 }
 
 #actionbar Button.selected {
-  border: hkey $peach;
   background: $base;
 }
 

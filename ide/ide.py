@@ -3,54 +3,9 @@ from textual import events
 from textual.containers import Vertical, Horizontal
 from textual.widgets import Static, Welcome, Button, Tree, Label
 
+from chip import Chip
 
-# for chip
-from textual.widgets import Label
-from rich.text import Text, TextType
 
-class Chip(Label, can_focus=True):
-  """simple chips"""
-  DEFAULT_CSS = """
-  Chip {
-    border: none;
-    min-width: 0;
-    height: 1;
-    background: transparent;
-  }
-  """
-  
-  def __init__(
-    self, 
-    label: TextType | None = None,
-    icon: TextType | None = None,
-    *,
-    name: str | None = None,
-    id: str | None = None,
-    classes: str | None = None,
-    pre: str | "",
-    post: str | ""
-  ):
-    super().__init__(name=name, id=id, classes=classes)
-    
-    if label is None:
-      label = self.css_identifier_styled
-    
-    self.label = label
-    
-    if icon is None:
-      icon = ""
-    else:
-      icon = f" {icon}"
-      
-    self.icon = icon
-    
-    self.pre = pre
-    self.post = post
-  
-  
-  def compose(self) -> ComposeResult:
-    yield Label(f" {self.pre}[reverse] {self.label}{self.icon}[/]{self.post} ")
-    
 
 # =========================
 
@@ -82,13 +37,12 @@ class Ide(App):
     characters.add_leaf("Chani")
     yield tree
     
-    chip = Horizontal(
-      Chip("test 1", icon=""),
-      Chip("test 2", icon=""), 
-      Chip("test 3"), 
+    yield Horizontal(
+      Chip("test", icon="", variant="color-icon-box", variantColor="purple"),
+      Chip("test", icon="", variant="color-icon-box", shapedBox=True, variantColor="purple"),
+      Chip("test", icon="", variant="color-icon", variantColor="purple"),
+      Chip("test", icon="", variant="color-icon", shapedBox=True ,variantColor="purple"),
     id="contentpane", classes="box")
-    
-    yield chip
     
     yield Static("statusbar", id="statusbar", classes="box")
 
