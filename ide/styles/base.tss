@@ -98,3 +98,23 @@ Screen {
   grid-columns: 1fr 1fr;
   grid-rows: 1fr 1fr;
 }
+
+/* ==================+*/
+
+#contentpane {
+  layout: horizontal
+}
+
+.line-horz{
+  max-height: 1;
+  width: 6;
+  border: hkey;
+  offset-y: -1;
+}
+
+.line-vert{
+  max-width: 1;
+  height: 6;
+  border-left: vkey;
+  offset-x: -1;
+}

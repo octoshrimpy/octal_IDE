@@ -12,6 +12,15 @@ from chip import Chip
 class Ide(App):
   CSS_PATH = "styles/base.tss"  
   
+  lines = []
+  
+  def on_mount(self) -> None:
+    for line in self.lines:
+      line[0].styles.offset_x = line[1]
+      line[0].styles.offset_y = line[2]
+      # line[0].update(renderable=line[0].styles.border)
+      # line[0].styles.border = line[0].styles.border + line[3]
+  
   def compose(self) -> ComposeResult:
     files = Button(label="󰈢", id="action__files", classes="selected")
     projects = Button(label="", id="action__projects")
@@ -37,18 +46,18 @@ class Ide(App):
     characters.add_leaf("Chani")
     yield tree
     
+    lineH = Static("",classes="line-horz")
+    lineV = Static("",classes="line-vert")
+    
+    self.lines.append([lineH, 5, 4, "teal"])
+    self.lines.append([lineV, 5, 4, "cyan"])
+
+        
     yield Horizontal(
-      Chip("test"),
-      Chip("test"),
-      Chip("test"),
-      Chip("test"),
-      Chip("test"),
-      Chip("test"),
-      Chip("test"),
-      Chip("test"),
-      Chip("test"),
-      Chip("test"),
-      Chip("test"),
+      
+      lineH,
+      lineV,
+      
       # Chip("test", icon="", variant="color-icon-box", variantColor="purple"),
       # Chip("test", icon="", variant="color-icon-box", shapedBox=True, variantColor="purple"),
       # Chip("test", icon="", variant="color-icon", variantColor="purple"),
